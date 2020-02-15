@@ -1,14 +1,13 @@
 # Copyright 2016 Carlos Dauden <carlos.dauden@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, models
+from odoo import _, exceptions, models
 
 
 class StockMove(models.Model):
     _inherit = "stock.move"
 
-    @api.multi
-    def _action_done(self):
+    def _action_done(self, cancel_backorder=False):
         if not self.env.context.get("bypass_risk"):
             moves = self.filtered(
                 lambda x: (
@@ -27,7 +26,6 @@ class StockMove(models.Model):
 class StockPicking(models.Model):
     _inherit = "stock.picking"
 
-    @api.multi
     def show_risk_wizard(self, continue_method):
         return (
             self.env["partner.risk.exceeded.wiz"]
@@ -42,7 +40,6 @@ class StockPicking(models.Model):
             .action_show()
         )
 
-    @api.multi
     def action_confirm(self):
         if not self.env.context.get("bypass_risk"):
             if (
@@ -52,17 +49,13 @@ class StockPicking(models.Model):
                 return self.show_risk_wizard("action_confirm")
         return super(StockPicking, self).action_confirm()
 
-    @api.multi
     def action_assign(self):
         if not self.env.context.get("bypass_risk") and self.filtered(
             "partner_id.risk_exception"
         ):
-            params = self.env.context.get("params", {})
-            if "purchase.order" not in params and "sale.order" not in params:
-                return self.show_risk_wizard("action_assign")
+            return self.show_risk_wizard("action_assign")
         return super(StockPicking, self).action_assign()
 
-    @api.multi
     def button_validate(self):
         if not self.env.context.get("bypass_risk"):
             if (
