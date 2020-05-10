@@ -57,6 +57,7 @@
                         <field name="credit_policy"
                                attrs="{'readonly': [('risk_allow_edit', '=', False)]}"/>
                         <field name="risk_exception"/>
+                        <field name="unpaid_invoices_button"/>
                     </group>
                 </page>
             </page>

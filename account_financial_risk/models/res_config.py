@@ -10,3 +10,6 @@ class AccountConfigSettings(models.TransientModel):
     invoice_unpaid_margin = fields.Integer(
         related="company_id.invoice_unpaid_margin", readonly=False
     )
+    invoice_unpaid_margin_second = fields.Integer(
+        related="company_id.invoice_unpaid_margin_second", readonly=False
+    )

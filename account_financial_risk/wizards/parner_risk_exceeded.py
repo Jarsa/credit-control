@@ -11,6 +11,8 @@ class PartnerRiskExceededWiz(models.TransientModel):
     partner_id = fields.Many2one(
         comodel_name="res.partner", readonly=True, string="Customer"
     )
+    unpaid_invoices_button = fields.Boolean(
+        related="partner_id.unpaid_invoices_button")
     exception_msg = fields.Text(readonly=True)
     origin_reference = fields.Reference(
         lambda self: [(m.model, m.name) for m in self.env["ir.model"].search([])],
