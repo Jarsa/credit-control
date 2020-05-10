@@ -116,6 +116,25 @@ class ResPartner(models.Model):
     credit_policy = fields.Char()
     risk_allow_edit = fields.Boolean(compute="_compute_risk_allow_edit")
     credit_limit = fields.Float(track_visibility="onchange")
+    unpaid_invoices_button = fields.Boolean(
+        compute="_compute_unpaid_invoices_button", store=True,)
+
+    @api.depends('risk_exception')
+    def _compute_unpaid_invoices_button(self):
+        company = self.env.user.company_id
+        new_date = fields.Date.to_string(
+            datetime.today().date() - relativedelta(
+                days=company.invoice_unpaid_margin_second))
+        account_moveLine = self.env["account.move.line"].sudo()
+        aml = account_moveLine.search([
+            ("parent_state", "=", "posted"),
+            ("reconciled", "=", False),
+            ("account_internal_type", "=", "receivable"),
+            ("date_maturity", "<", new_date),
+            ("partner_id", "=", self.id)])
+        self.unpaid_invoices_button = False
+        if aml:
+            self.unpaid_invoices_button = True
 
     def _compute_risk_allow_edit(self):
         is_editable = self.env.user.has_group("account.group_account_manager")

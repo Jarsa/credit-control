@@ -24,6 +24,10 @@
                             <label string="Maturity Margin" for="invoice_unpaid_margin" class="col-lg-3 o_light_label"/>
                             <field name="invoice_unpaid_margin"/>
                         </div>
+                        <div class="row mt16">
+                            <label string="Maturity Margin II" for="invoice_unpaid_margin_second" class="col-lg-3 o_light_label"/>
+                            <field name="invoice_unpaid_margin_second"/>
+                        </div>
                     </div>
                 </div>
             </div>
