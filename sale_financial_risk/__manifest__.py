@@ -12,5 +12,4 @@
     "depends": ["sale", "account_financial_risk"],
     "data": ["views/res_partner_view.xml", "views/sale_financial_risk_view.xml"],
     "installable": True,
-    "pre_init_hook": "pre_init_hook",
 }
