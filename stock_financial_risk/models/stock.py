@@ -20,7 +20,8 @@ class StockMove(models.Model):
                     _(
                         "Financial risk exceeded in partner:\n%s",
                         moves.mapped("partner_id.name"),
-                    ))
+                    )
+                )
         return super()._action_done()
 
 
