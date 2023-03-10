@@ -20,13 +20,20 @@ odoo.define("pos_financial_risk.PaymentScreen", function (require) {
                 var custPaymentLines = this.paymentLines.filter(
                     (payment) => payment.payment_method.type === "pay_later"
                 );
+                var otherPaymentLines = this.paymentLines.filter(
+                    (payment) => payment.payment_method.type != "pay_later"
+                );
                 var custAmount = custPaymentLines
+                    .map((line) => line.amount)
+                    .filter((x) => x > 0)
+                    .reduce((prev, next) => prev + next, 0);
+                var otherAmount = otherPaymentLines
                     .map((line) => line.amount)
                     .filter((x) => x > 0)
                     .reduce((prev, next) => prev + next, 0);
                 if (
                     customer.risk_exception ||
-                    customer.risk_total + custAmount > customer.credit_limit
+                    customer.risk_total + custAmount - otherAmount > customer.credit_limit
                 ) {
                     this.showPopup("ErrorPopup", {
                         title: this.env._t("Financial Risk Exceeded"),
