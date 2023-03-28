@@ -13,13 +13,17 @@ odoo.define("pos_financial_risk.PaymentScreen", function (require) {
             // @Override
             // eslint-disable-next-line no-unused-vars
             async validateOrder(isForceValidate) {
+                var custPaymentLines = this.paymentLines.filter(
+                    (payment) => payment.payment_method.type === "pay_later"
+                );
+                if (custPaymentLines.length === 0) {
+                    await super.validateOrder(...arguments);
+                    return;
+                }
                 var commercialPartnerId =
                     this.currentOrder.get_client().commercial_partner_id[0];
                 var customer =
                     this.currentOrder.pos.db.get_partner_by_id(commercialPartnerId);
-                var custPaymentLines = this.paymentLines.filter(
-                    (payment) => payment.payment_method.type === "pay_later"
-                );
                 var otherPaymentLines = this.paymentLines.filter(
                     (payment) => payment.payment_method.type != "pay_later"
                 );
