@@ -133,7 +133,7 @@ msgstr "Porcentaje del límite de riesgo de compra consumido."
 #: model:ir.model.fields,field_description:purchase_financial_risk.field_res_partner__purchase_risk
 #: model:ir.model.fields,field_description:purchase_financial_risk.field_res_users__purchase_risk
 msgid "Purchase Financial Risk"
-msgstr "Riesgo financiero de la compra"
+msgstr "Riesgo Total de Compra"
 
 #. module: purchase_financial_risk
 #: model:ir.model,name:purchase_financial_risk.model_purchase_order
@@ -189,7 +189,7 @@ msgstr "Moneda de riesgo de compra"
 #: model:ir.model.fields,field_description:purchase_financial_risk.field_res_partner__purchase_risk_exception
 #: model:ir.model.fields,field_description:purchase_financial_risk.field_res_users__purchase_risk_exception
 msgid "Purchase Risk Exception"
-msgstr "Excepción de riesgo de compra"
+msgstr "Ignorar el Riesgo de Compra?"
 
 #. module: purchase_financial_risk
 #: model:ir.model,name:purchase_financial_risk.model_purchase_risk_exception
@@ -201,7 +201,7 @@ msgstr "Asistente para excepciones de riesgo de compra"
 #: model:ir.model.fields,field_description:purchase_financial_risk.field_res_partner__purchase_risk_limit
 #: model:ir.model.fields,field_description:purchase_financial_risk.field_res_users__purchase_risk_limit
 msgid "Purchase Risk Limit"
-msgstr "Límite de riesgo de compra"
+msgstr "Límite de Débito"
 
 #. module: purchase_financial_risk
 #: model_terms:ir.ui.view,arch_db:purchase_financial_risk.purchase_risk_exception_wizard
@@ -222,19 +222,19 @@ msgstr "Resumen de riesgos de compra"
 #: model:ir.model.fields,field_description:purchase_financial_risk.field_res_partner__purchase_risk_bill_draft
 #: model:ir.model.fields,field_description:purchase_financial_risk.field_res_users__purchase_risk_bill_draft
 msgid "Purchase Risk from Draft Bills"
-msgstr "Riesgo de compra por facturas en borrador"
+msgstr "Suma de Facturas en Borrador"
 
 #. module: purchase_financial_risk
 #: model:ir.model.fields,field_description:purchase_financial_risk.field_res_partner__purchase_risk_bill_open
 #: model:ir.model.fields,field_description:purchase_financial_risk.field_res_users__purchase_risk_bill_open
 msgid "Purchase Risk from Open Bills"
-msgstr "Riesgo de compra por facturas abiertas"
+msgstr "Suma de Saldo de Facturas Confirmadas"
 
 #. module: purchase_financial_risk
 #: model:ir.model.fields,field_description:purchase_financial_risk.field_res_partner__purchase_risk_po
 #: model:ir.model.fields,field_description:purchase_financial_risk.field_res_users__purchase_risk_po
 msgid "Purchase Risk from POs"
-msgstr "Riesgo de compra por órdenes de compra"
+msgstr "Suma Órdenes de Compra confirmadas sin facturar"
 
 #. module: purchase_financial_risk
 #. odoo-python
@@ -253,7 +253,7 @@ msgstr "Se ha superado el límite de riesgo de compra."
 #. module: purchase_financial_risk
 #: model_terms:ir.ui.view,arch_db:purchase_financial_risk.res_partner_view_purchase_risk
 msgid "Risk (%)"
-msgstr "Riesgo (%)"
+msgstr "Porcentaje usado de Riesgo"
 
 #. module: purchase_financial_risk
 #: model_terms:ir.ui.view,arch_db:purchase_financial_risk.purchase_risk_exception_wizard
