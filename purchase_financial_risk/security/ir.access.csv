@@ -1,0 +1,2 @@
+id,name,model_id,group_id/id,operation,domain
+access_purchase_risk_exception,purchase.risk.exception,purchase.risk.exception,base.group_user,cru,

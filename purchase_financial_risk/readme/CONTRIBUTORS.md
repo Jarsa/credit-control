@@ -1,0 +1,3 @@
+- [Jarsa](https://www.jarsa.com):
+  - Jarsa Development Team
+  - Hector Meraz \<<hector.meraz@jarsa.com>\>
